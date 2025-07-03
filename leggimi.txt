@@ -1,0 +1,15 @@
+in ordine di esecuzione: 
+gcc -o biblioteca biblioteca.c
+gcc -o serverB serverB.c
+gcc -o serverG serverG.c
+gcc -o clientV clientV.c
+gcc -o clientU clientU.c
+gcc -o client client.c
+(aprire 3 finestre del terminale e scrivere in ognuna una tra queste istruzioni)
+./biblioteca
+./serverB
+./serverG
+aprire una quarta e digitare:
+./client 12wer3t4yu
+./clientV 12wer3t4yu
+./clientU 12wer3t4yu
