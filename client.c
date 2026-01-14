@@ -4,6 +4,7 @@
 #include <arpa/inet.h> //per funzioni e strutture legate agli indirizzi di rete
 #include <sys/socket.h> //per funzioni e strutture dei socket
 #include <unistd.h> //per close() e altre funzioni POSIX
+#include <ctype.h>
 
 #include "tessera_bibliotecaria.h"
 #include "settings_Client_Server.h"
@@ -40,7 +41,7 @@ int main(int argc, char const *argv[])
     strncpy(tb.codice_tb, argv[1], TESSERA_LUNG); //copia del codice della tessera ricevuto da linea di comando nella struct
     tb.codice_tb[TESSERA_LUNG]='\0'; //aggiunta del terminatore di stringa 
     for(size_t i=0; tb.codice_tb[i]!='\0'; i++){//conversione del codice della tessera in maiuscolo per la standardizzazione
-        tb.codice_tb[i] = toupper(tb.codice_tb[i]);
+        tb.codice_tb[i] = toupper((unsigned char) tb.codice_tb[i]);
     }
    
     if(send(socketFD, &tb, sizeof(tb), 0)<0){//invio della tessera al server
