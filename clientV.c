@@ -4,6 +4,7 @@
 #include <arpa/inet.h> //per funzioni e strutture legate agli indirizzi di rete
 #include <sys/socket.h> //per funzioni e strutture dei socket
 #include <unistd.h> //per close() e altre funzioni POSIX
+#include <ctype.h>
 
 #include "tessera_bibliotecaria.h"
 #include "settings_Client_Server.h"
@@ -37,7 +38,7 @@ int main(int argc, char const *argv[])
     memset(&tb, 0, sizeof(tb)); //pulizia della struct per evitare valori garbage
     strncpy(tb.codice_tb, argv[1], TESSERA_LUNG); //si copia il codice della tessera bibliotecaria della linea di comando nella variabile "tb.codice_tb"
     for(size_t i=0; tb.codice_tb[i]!='\0';i++){ //i caratteri vengono convertiti in maiuscolo
-        tb.codice_tb[i] = toupper(tb.codice_tb[i]);
+        tb.codice_tb[i] = toupper((unsigned char) tb.codice_tb[i]);
     }
     tb.servizio = 1; //servizio di controllo della validita'
 
